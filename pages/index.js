@@ -1,7 +1,33 @@
-const Index = () => (
+import getConfig from 'next/config';
+import Main from '../fe/components/Main';
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+
+const Index = ({ data }) => (
     <div>
-      <h1>Home page</h1>
+        <Main data={data} />
     </div>
-  )
-  
-  export default Index;
+)
+
+export async function getStaticProps() {
+    var Airtable = require('airtable');
+    var apiKey = serverRuntimeConfig.API_KEY;
+    var base = new Airtable({ apiKey }).base('appKy6SwWCmfyQOWS');
+    const table = base('Artists');
+    const records = await table.select({
+        fields: ['Name', 'Bio', 'Attachments'],
+    }).all();
+    const data = records.map((item) => {
+        return {
+            name: item.get('Name'),
+            bio: item.get('Bio'),
+            Attachments: item.get('Attachments').map((attachment) => attachment.url)
+        };
+    });
+    return {
+        props: {
+            data
+        },
+    };
+}
+
+export default Index;

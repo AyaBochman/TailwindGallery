@@ -12,7 +12,13 @@
     "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.2",
+    "react-scripts": "4.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^2.0.3"
   }
 }

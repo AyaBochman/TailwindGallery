@@ -16,7 +16,7 @@ export async function getStaticProps() {
     const table = base('Content');
     const records = await table.select({
         fields: ['Headline', 'Sub-headline', 'Header image'],
-        filterByFormula: "IF({Headline}, {Sub-headline}, NOT({Header image} = BLANK()))"
+        filterByFormula: "IF({Headline}, {Sub-headline}, {Header image})"
     }).all();
 
     console.log(records)

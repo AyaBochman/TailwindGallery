@@ -1,32 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Card from './Card';
 import Pagination from './Pagination';
 
 const Main = ({ data }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+    const slicedData = data.slice(firstIndex, lastIndex);
 
-    useEffect(() => {
-        console.log('data', data);
-    }, [])
+    const handlePageChange = (pageNum) => {
+        setCurrentPage(pageNum)
+    }
 
+    const handleArrowClick = (direction, pages) => {
+        let newPage;
+        switch (direction) {
+            case 'next':
+                newPage = currentPage + 1;
+                if (newPage <= pages[pages.length - 1]) {
+                    setCurrentPage(newPage);
+                }
+                break;
+            case 'prev':
+                newPage = currentPage - 1;
+                if (newPage >= pages[0]) {
+                    setCurrentPage(newPage);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     return (
         <div>
             <Navbar title={'Welcome to Tailor Brands Gallery'} />
-            <div class="container my-12 mx-auto px-4 md:px-12">
-                <div class="flex flex-wrap -mx-1 lg:-mx-4">
-
-
-                    {data && data.map((item, i) => {
-                        return <Card key={i} headline={item.headline} image={item.image} subHeadline={item.subHeadline} />
+            {/* desktop and tablet */}
+            <div className="container my-12 mx-auto px-4 md:px-12 hidden md:block">
+                <div className="flex flex-wrap -mx-1 lg:-mx-4">
+                    {slicedData && slicedData.map((item, i) => {
+                        return <Card key={`card-${i}`} headline={item.headline} image={item.image} subHeadline={item.subHeadline} />
                     })}
-
                 </div>
-                <div class="hidden md:block">
-                <Pagination itemPerPage={6} totalItemsLen={data.length}/>
+                <Pagination itemsPerPage={6} totalItemsLen={data.length} handlePageChange={handlePageChange} handleArrowClick={handleArrowClick} />
+            </div>
+            {/* mobile */}
+            <div className="container my-12 mx-auto px-4 md:px-12 block md:hidden">
+                <div className="flex flex-wrap -mx-1 lg:-mx-4">
+                    {data && data.map((item, i) => {
+                        return <Card key={`card-${i}`} headline={item.headline} image={item.image} subHeadline={item.subHeadline} />
+                    })}
                 </div>
-               
-
             </div>
         </div>
     );

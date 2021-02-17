@@ -3,19 +3,19 @@ import React from 'react';
 const Card = ({ headline, image, subHeadline }) => {
 
     return (
-        <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex">
-            <article class="overflow-hidden rounded-lg shadow-lg w-full">
+        <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex transform transition duration-400 hover:scale-105">
+            <article className="overflow-hidden rounded-lg shadow-lg w-full">
                 <a href="#">
-                    <img alt="Placeholder" class="block h-64 w-full object-cover" src={image && image[0].url} />
+                    <img alt="Placeholder" className="block h-64 w-full object-cover" src={image && image[0].url} />
                 </a>
-                <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-                        <a class="no-underline hover:underline text-black" href="#">
+                <header className="flex items-center justify-between leading-tight px-2 pt-2 md:px-4">
+                    <h1 className="text-lg font-semibold">
+                        <a className="no-underline hover:underline text-gray-800" href="#">
                             {headline}
                         </a>
                     </h1>
                 </header>
-                <p class="pl-2 md:pl-4 pb-3">{subHeadline}</p>
+                <p className="px-2 md:px-4 pb-3  text-gray-700">{subHeadline}</p>
             </article>
         </div>
     );

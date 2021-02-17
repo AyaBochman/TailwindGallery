@@ -1,6 +1,6 @@
 import getConfig from 'next/config';
 import Main from '../fe/components/Main';
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+const { serverRuntimeConfig } = getConfig();
 
 const Index = ({ data }) => (
     <div>
@@ -13,7 +13,7 @@ export async function getStaticProps() {
     var Airtable = require('airtable');
     var apiKey = serverRuntimeConfig.API_KEY;
     var base = new Airtable({ apiKey }).base(serverRuntimeConfig.BASE_ID);
-    const table = base('Content');
+    const table = base(serverRuntimeConfig.TABLE_NAME);
     const records = await table.select({
         fields: ['Headline', 'Sub-headline', 'Header image'],
         filterByFormula: "AND({Headline}, {Sub-headline}, {Header image})" //checking if those fields exist

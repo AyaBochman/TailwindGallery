@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Card = ({ headline, image, subHeadline }) => {
+const Card = ({ headline, subHeadline, image }) => {
 
     return (
         <div className="my-4 px-2 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex transform transition duration-400 hover:scale-105">
@@ -20,5 +21,13 @@ const Card = ({ headline, image, subHeadline }) => {
         </div>
     );
 };
+
+Card.propTypes = {
+    headline: PropTypes.string.isRequired,
+    subHeadline: PropTypes.string.isRequired,
+    image: PropTypes.arrayOf(PropTypes.shape({
+        url: PropTypes.string.isRequired,
+    })).isRequired
+}
 
 export default Card;

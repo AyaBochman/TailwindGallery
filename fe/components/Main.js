@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Card from './Card';
+import Pagination from './Pagination';
 
 const Main = ({ data }) => {
 
     useEffect(() => {
         console.log('data', data);
     }, [])
+
 
     return (
         <div>
@@ -20,9 +22,12 @@ const Main = ({ data }) => {
                     })}
 
                 </div>
+                <div class="hidden md:block">
+                <Pagination itemPerPage={6} totalItemsLen={data.length}/>
+                </div>
+               
 
             </div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">CLICK</button>
         </div>
     );
 };

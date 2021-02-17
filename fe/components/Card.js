@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({ headline, image, subHeadline }) => {
 
     return (
-        <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex transform transition duration-400 hover:scale-105">
+        <div className="my-4 px-2 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex transform transition duration-400 hover:scale-105">
             <article className="overflow-hidden rounded-lg shadow-lg w-full">
                 <a href="#">
                     <img alt="Placeholder" className="block h-64 w-full object-cover" src={image && image[0].url} />

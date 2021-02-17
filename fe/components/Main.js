@@ -14,24 +14,8 @@ const Main = ({ data }) => {
         setCurrentPage(pageNum)
     }
 
-    const handleArrowClick = (direction, pages) => {
-        let newPage;
-        switch (direction) {
-            case 'next':
-                newPage = currentPage + 1;
-                if (newPage <= pages[pages.length - 1]) {
-                    setCurrentPage(newPage);
-                }
-                break;
-            case 'prev':
-                newPage = currentPage - 1;
-                if (newPage >= pages[0]) {
-                    setCurrentPage(newPage);
-                }
-                break;
-            default:
-                break;
-        }
+    const handleArrowClick = (newPage) => {
+        setCurrentPage(newPage);
     }
 
     return (
@@ -44,13 +28,13 @@ const Main = ({ data }) => {
                         return <Card key={`card-${i}`} headline={item.headline} image={item.image} subHeadline={item.subHeadline} />
                     })}
                 </div>
-                <Pagination itemsPerPage={6} totalItemsLen={data.length} handlePageChange={handlePageChange} handleArrowClick={handleArrowClick} />
+                <Pagination itemsPerPage={6} totalItemsLen={data.length} handlePageChange={handlePageChange} handleArrowClick={handleArrowClick} currentPage={currentPage} />
             </div>
             {/* mobile */}
             <div className="container my-4 mx-auto px-4 md:px-12 block md:hidden">
                 <div className="flex flex-wrap -mx-1 lg:-mx-4">
                     {data && data.map((item, i) => {
-                        return <Card key={`card-${i}`} headline={item.headline} image={item.image} subHeadline={item.subHeadline} />
+                        return <Card key={`card-${i}`} headline={item.headline} image={item.image} subHeadline={item.subHeadline}/>
                     })}
                 </div>
             </div>

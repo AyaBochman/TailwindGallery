@@ -4,7 +4,7 @@ const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
 const Index = ({ data }) => (
     <div>
-        <title>Aya Bochman</title>
+        <title>Tailor Brands Gallery | Aya Bochman</title>
         <Main data={data} />
     </div>
 )
@@ -12,7 +12,7 @@ const Index = ({ data }) => (
 export async function getStaticProps() {
     var Airtable = require('airtable');
     var apiKey = serverRuntimeConfig.API_KEY;
-    var base = new Airtable({ apiKey }).base('appDAc9CXCfSiBuV8');
+    var base = new Airtable({ apiKey }).base(serverRuntimeConfig.BASE_ID);
     const table = base('Content');
     const records = await table.select({
         fields: ['Headline', 'Sub-headline', 'Header image'],

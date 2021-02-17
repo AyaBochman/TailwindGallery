@@ -20,7 +20,6 @@ const Pagination = ({ itemsPerPage, totalItemsLen, handlePageChange, handleArrow
             case 'next':
                 newPage = currentPage + 1;
                 if (newPage <= pageNumbers[pageNumbers.length - 1]) {
-                    console.log('newpage', newPage);
                     setActive({ [newPage]: true })
                     handleArrowClick(newPage);
                     break;
@@ -29,7 +28,6 @@ const Pagination = ({ itemsPerPage, totalItemsLen, handlePageChange, handleArrow
             case 'prev':
                 newPage = currentPage - 1;
                 if (newPage >= pageNumbers[0]) {
-                    console.log('newpage', newPage);
                     setActive({ [newPage]: true })
                     handleArrowClick(newPage);
                     break;
@@ -37,13 +35,12 @@ const Pagination = ({ itemsPerPage, totalItemsLen, handlePageChange, handleArrow
             default:
                 break;
         }
-    }
+    };
 
     const onPageClick = (number) => {
         setActive({ [number]: true });
         handlePageChange(number)
-
-    }
+    };
 
 
     return (

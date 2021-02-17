@@ -12,6 +12,7 @@
     "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-paginate": "^7.1.0",
     "react-scripts": "4.0.2"
   },
   "devDependencies": {

@@ -16,19 +16,14 @@ export async function getStaticProps() {
     const table = base('Content');
     const records = await table.select({
         fields: ['Headline', 'Sub-headline', 'Header image'],
-        filterByFormula: "IF({Headline}, {Sub-headline}, {Header image})"
+        filterByFormula: "AND({Headline}, {Sub-headline}, {Header image})" //checking if those fields exist
     }).all();
-
-    console.log(records)
     const data = records.map((item) => {
-
         return {
             headline: item.get('Headline'),
             subHeadline: item.get('Sub-headline'),
-            image: item.get('Header image') || null
+            image: item.get('Header image')
         };
-
-
     });
     return {
         props: {

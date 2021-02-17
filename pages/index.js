@@ -9,10 +9,10 @@ const Index = ({ data }) => (
     </div>
 )
 
-export async function getStaticProps() {
+Index.getInitialProps = async (ctx) => {
     var Airtable = require('airtable');
     var apiKey = serverRuntimeConfig.AIRTABLE_API_KEY;
-    var base = new Airtable({ apiKey }).base(serverRuntimeConfig.AIRTABLE_BASE_ID );
+    var base = new Airtable({ apiKey }).base(serverRuntimeConfig.AIRTABLE_BASE_ID);
     const table = base(serverRuntimeConfig.AIRTABLE_TABLE_NAME);
     const records = await table.select({
         fields: ['Headline', 'Sub-headline', 'Header image'],
@@ -26,10 +26,30 @@ export async function getStaticProps() {
         };
     });
     return {
-        props: {
-            data
-        },
+        data
     };
 }
+// export async function getStaticProps() {
+//     var Airtable = require('airtable');
+//     var apiKey = serverRuntimeConfig.AIRTABLE_API_KEY;
+//     var base = new Airtable({ apiKey }).base(serverRuntimeConfig.AIRTABLE_BASE_ID);
+//     const table = base(serverRuntimeConfig.AIRTABLE_TABLE_NAME);
+//     const records = await table.select({
+//         fields: ['Headline', 'Sub-headline', 'Header image'],
+//         filterByFormula: "AND({Headline}, {Sub-headline}, {Header image})" //checking if those fields exist
+//     }).all();
+//     const data = records.map((item) => {
+//         return {
+//             headline: item.get('Headline'),
+//             subHeadline: item.get('Sub-headline'),
+//             image: item.get('Header image')
+//         };
+//     });
+//     return {
+//         props: {
+//             data
+//         },
+//     };
+// }
 
 export default Index;

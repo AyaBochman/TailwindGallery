@@ -19,7 +19,7 @@ const Main = ({ data }) => {
     };
 
     return (
-        <div>
+        <div className="font-sans">
             <Navbar title={'Welcome to Tailor Brands Gallery'} />
             {/* desktop and tablet */}
             <div className="container my-12 mx-auto px-4 md:px-12 hidden md:block">

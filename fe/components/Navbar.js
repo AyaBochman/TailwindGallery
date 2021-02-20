@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Navbar = ({title}) => {
+const Navbar = ({ title }) => {
     return (
         <div>
             <nav className="bg-gray-800">
@@ -8,7 +9,7 @@ const Navbar = ({title}) => {
                     <div className="relative flex items-center justify-center h-16">
                         <h2 className="text-xl md:text-2xl font-bold leading-7 text-gray-50 sm:text-3xl sm:truncate">
                             {title}
-    </h2>
+                        </h2>
                     </div>
                 </div>
             </nav>
@@ -16,5 +17,9 @@ const Navbar = ({title}) => {
         </div>
     );
 };
+
+Navbar.protoTypes = {
+    title: PropTypes.string
+}
 
 export default Navbar;
